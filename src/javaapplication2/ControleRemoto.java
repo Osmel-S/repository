@@ -12,7 +12,7 @@ package javaapplication2;
 public class ControleRemoto {
 
     private int volumeMaximo = 100;
-    private int canalMaximo = 100;
+    private int canalMaximo = 10220;
     private Televisao televisao;
     
     ControleRemoto(Televisao televisao){
