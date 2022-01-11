@@ -5,8 +5,14 @@
  */
 package javaapplication2;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import services.PrintService;
+import javaapplication2.entities.Product;
+import services.CalculationService;
 
 /**
  *
@@ -20,20 +26,26 @@ public class JavaApplication2 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Scanner sc = new Scanner(System.in);
-        PrintService<Integer> ps = new PrintService();
+        List<Product> list = new ArrayList<>();
+        String path = "C://Users//03386346227//Documents//temp";
         
-        System.out.println("how many values?");
-        int n = sc.nextInt();
         
-        for(int i=0; i<n;i++){
-            int value = sc.nextInt();
-            ps.addValue(value);
+        
+        try(BufferedReader br = new BufferedReader(new FileReader(path))){
+            String line = br.readLine();
+            while(line != null){
+                String [] fields = line.split(",");
+                list.add(new Product(fields[0],Double.parseDouble(fields[1])));
+                line = br.readLine();
+            }
+            Product x = CalculationService.max(list);
+            System.out.println("Max: ");
+            System.out.println(x);
+        }catch (IOException e){
+            System.out.println("Error: " + e.getMessage());
         }
+         
         
-        System.out.println("First : " + ps.first());
-        
-        sc.close();
     }
     
 }
