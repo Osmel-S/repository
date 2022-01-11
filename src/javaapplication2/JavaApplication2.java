@@ -5,6 +5,9 @@
  */
 package javaapplication2;
 
+import java.util.Scanner;
+import services.PrintService;
+
 /**
  *
  * @author OSMEL SANTOS FEITOSA
@@ -17,22 +20,20 @@ public class JavaApplication2 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Televisao tv = new Televisao();
+        Scanner sc = new Scanner(System.in);
+        PrintService<Integer> ps = new PrintService();
         
-      
-        tv.setCanal(10);
-        tv.setMarca("Samsung");
-        tv.setLigado(true);
+        System.out.println("how many values?");
+        int n = sc.nextInt();
         
-        System.out.println(tv);
-        tv.getCanal();
-        tv.getVolume();
-        tv.setCanal(30);
-        System.out.println(tv);
-        tv.getControleRemoto().aumentarVolume();  
-        tv.getControleRemoto().descerCanal();
-        tv.setLigado(false);
-        System.out.println(tv);
+        for(int i=0; i<n;i++){
+            int value = sc.nextInt();
+            ps.addValue(value);
+        }
+        
+        System.out.println("First : " + ps.first());
+        
+        sc.close();
     }
     
 }
